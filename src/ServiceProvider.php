@@ -15,7 +15,7 @@ class ServiceProvider extends Support\ServiceProvider
             __DIR__.'/database/migrations/' => database_path('migrations')
         ], 'owners-migrations');
 
-        // $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }
 
     public function register()
