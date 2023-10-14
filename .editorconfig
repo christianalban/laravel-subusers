@@ -1,0 +1,9 @@
+# Archivo .editorconfig para proyectos PHP
+
+# Configuración predeterminada para todos los archivos
+root = true
+
+# Configuración para archivos PHP
+[*]
+indent_style = space
+indent_size = 4

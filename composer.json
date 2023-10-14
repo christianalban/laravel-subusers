@@ -1,0 +1,28 @@
+{
+    "name": "christian/laravel-owners",
+    "description": "Add ownership functionality to users and any entity in Laravel with this versatile plugin, effortlessly managing user-specific associations.",
+    "type": "laravel-plugin",
+    "require": {
+        "illuminate/support": "^10.28",
+        "illuminate/database": "^10.28"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Christian\\LaravelOwners\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Christian Albán"
+        }
+    ],
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Christian\\LaravelOwners\\ServiceProvider"
+            ]
+        }
+    }
+}
