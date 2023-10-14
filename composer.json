@@ -9,7 +9,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Christian\\LaravelOwners\\": "src/"
+            "Alban\\LaravelOwners\\": "src/"
         }
     },
     "authors": [
@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Christian\\LaravelOwners\\ServiceProvider"
+                "Alban\\LaravelOwners\\ServiceProvider"
             ]
         }
     }
