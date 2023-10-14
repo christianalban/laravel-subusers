@@ -9,9 +9,13 @@ class ServiceProvider extends Support\ServiceProvider
     {
         $this->publishes([
             __DIR__.'/config/owners.php' => config_path('owners.php'),
-        ], 'config');
+        ], 'owners-config');
 
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->publishes([
+            __DIR__.'/database/migrations/' => database_path('migrations')
+        ], 'owners-migrations');
+
+        // $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }
 
     public function register()
