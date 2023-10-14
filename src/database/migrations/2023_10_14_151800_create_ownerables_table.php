@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ownerables', function (Blueprint $table) {
             $table->foreignId('owner_id')->constrained('owners');
-            $table->morphs('owner');
+            $table->morphs('ownerable');
         });
     }
 
