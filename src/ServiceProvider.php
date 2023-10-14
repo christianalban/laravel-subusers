@@ -1,9 +1,9 @@
 <?php
-namespace Christian\LaravelOwners;
+namespace Alban\LaravelOwners;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support;
 
-class LaravelOwnersServiceProvider extends ServiceProvider
+class ServiceProvider extends Support\ServiceProvider
 {
     public function boot()
     {
