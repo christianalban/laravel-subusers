@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ownerable', function (Blueprint $table) {
+        Schema::create('ownerables', function (Blueprint $table) {
             $table->foreignId('owner_id')->constrained('owners');
             $table->morphs('owner');
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ownerable');
+        Schema::dropIfExists('ownerables');
     }
 };
