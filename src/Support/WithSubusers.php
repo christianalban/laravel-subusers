@@ -33,8 +33,10 @@ trait WithSubusers
     {
         $userModel = config('subusers.user_model');
 
-        return Attribute::make(function () use ($userModel) {
-            return $userModel::join('subusers', 'subusers.main_user_id', '=', $userModel->getTable() . '.id')
+        $tableName = app($userModel)->getTable();
+
+        return Attribute::make(function () use ($userModel, $tableName) {
+            return $userModel::join('subusers', 'subusers.main_user_id', '=', $tableName . '.id')
                 ->where('sub_user_id', $this->id)->first();
         });
     }
