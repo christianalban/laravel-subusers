@@ -1,5 +1,5 @@
 <?php
-namespace Alban\LaravelOwners;
+namespace Alban\LaravelSubusers;
 
 use Illuminate\Support;
 
@@ -8,18 +8,18 @@ class ServiceProvider extends Support\ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config/owners.php' => config_path('owners.php'),
-        ], 'owners-config');
+            __DIR__.'/config/subusers.php' => config_path('subusers.php'),
+        ], 'subusers-config');
 
         $this->publishes([
             __DIR__.'/database/migrations/' => database_path('migrations')
-        ], 'owners-migrations');
+        ], 'subusers-migrations');
 
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/config/owners.php', 'owners');
+        $this->mergeConfigFrom(__DIR__.'/config/subusers-config.php', 'subusers-config');
     }
 }

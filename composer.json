@@ -1,11 +1,11 @@
 {
-    "name": "alban/laravel-owners",
+    "name": "alban/laravel-subusers",
     "description": "Add ownership functionality to users and any entity in Laravel with this versatile plugin, effortlessly managing user-specific associations.",
     "type": "laravel-plugin",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Alban\\LaravelOwners\\": "src/"
+            "Alban\\LaravelSubusers\\": "src/"
         }
     },
     "authors": [
@@ -17,7 +17,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Alban\\LaravelOwners\\ServiceProvider"
+                "Alban\\LaravelSubusers\\ServiceProvider"
             ]
         }
     },
