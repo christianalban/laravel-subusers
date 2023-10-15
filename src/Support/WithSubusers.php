@@ -43,7 +43,13 @@ trait WithSubusers
 
     public function upgradeAsMain()
     {
+        UpgradedAsOwner::dispatch($this);
+
         $mainUser = $this->main_user;
+
+        if (!$mainUser) {
+            return;
+        }
 
         $mainUser->detachSubuser($this);
 
@@ -53,7 +59,6 @@ trait WithSubusers
             'main_user_id' => $this->id,
         ]);
 
-        UpgradedAsOwner::dispatch($this);
         DowngradedAsSubuser::dispatch($mainUser);
     }
 
