@@ -20,6 +20,6 @@ class ServiceProvider extends Support\ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/config/subusers-config.php', 'subusers-config');
+        $this->mergeConfigFrom(__DIR__.'/config/subusers-config.php', 'subusers');
     }
 }
