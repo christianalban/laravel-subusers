@@ -4,7 +4,7 @@ namespace Alban\LaravelSubusers\Listeners;
 
 use Alban\LaravelSubusers\Events\UpgradedAsOwner;
 
-class DowngradeToSubuser
+class CreateNewOwner
 {
     /**
      * Handle the event.

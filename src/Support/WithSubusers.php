@@ -2,6 +2,9 @@
 
 namespace Alban\LaravelSubusers\Support;
 
+use Alban\LaravelSubusers\Events\DowngradedAsSubuser;
+use Alban\LaravelSubusers\Events\UpgradedAsOwner;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\DB;
 
@@ -36,6 +39,22 @@ trait WithSubusers
         });
     }
 
+    public function upgradeAsMain()
+    {
+        $mainUser = $this->main_user;
+
+        $mainUser->detachSubuser($this);
+
+        $this->attachSubuser($mainUser);
+
+        DB::table('subusers')->where('main_user_id', $mainUser->id)->update([
+            'main_user_id' => $this->id,
+        ]);
+
+        UpgradedAsOwner::dispatch($this);
+        DowngradedAsSubuser::dispatch($mainUser);
+    }
+
     public static function createAsMain(array $data)
     {
         $user = self::create($data);
@@ -57,8 +76,15 @@ trait WithSubusers
         $user->delete();
     }
 
-    public function removeSubuser($user)
+    public function detachSubuser($user)
     {
         $this->subusers()->detach($user);
+    }
+
+    public function scopeWhereAdmin(Builder $query): Builder
+    {
+        return $query->whereDoesntHave('subusers', function (Builder $query) {
+            $query->where('main_user_id', '!=', DB::raw('users.id'));
+        });
     }
 }

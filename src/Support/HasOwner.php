@@ -9,13 +9,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait HasOwner
 {
-    public function upgradeAsOwner()
-    {
-        $mainUser = $this->mainUser();
-
-        $this->owners()->save(Owner::make());
-    }
-
     protected function owner(): Attribute
     {
         return Attribute::make(

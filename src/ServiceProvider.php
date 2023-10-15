@@ -1,7 +1,12 @@
 <?php
 namespace Alban\LaravelSubusers;
 
+use Alban\LaravelSubusers\Events\DowngradedAsSubuser;
+use Alban\LaravelSubusers\Events\UpgradedAsOwner;
+use Alban\LaravelSubusers\Listeners\CreateNewOwner;
+use Alban\LaravelSubusers\Listeners\RemovePreviousOwner;
 use Illuminate\Support;
+use Illuminate\Support\Facades\Event;
 
 class ServiceProvider extends Support\ServiceProvider
 {
@@ -16,6 +21,16 @@ class ServiceProvider extends Support\ServiceProvider
         ], 'subusers-migrations');
 
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+
+        Event::listen(
+            UpgradedAsOwner::class,
+            CreateNewOwner::class,
+        );
+
+        Event::listen(
+            DowngradedAsSubuser::class,
+            RemovePreviousOwner::class,
+        );
     }
 
     public function register()
