@@ -12,7 +12,7 @@ trait WithSubusers
 {
     public function subusers()
     {
-        return $this->belongsToMany(config('owner.user_model'), 'subusers', 'main_user_id', 'sub_user_id');
+        return $this->belongsToMany(config('subusers.user_model'), 'subusers', 'main_user_id', 'sub_user_id');
     }
 
     protected function isMainUser(): Attribute
@@ -31,7 +31,7 @@ trait WithSubusers
 
     protected function mainUser(): Attribute
     {
-        $userModel = config('owner.user_model');
+        $userModel = config('subusers.user_model');
 
         return Attribute::make(function () use ($userModel) {
             return $userModel::join('subusers', 'subusers.main_user_id', '=', $userModel->getTable() . '.id')
@@ -84,7 +84,7 @@ trait WithSubusers
     public function scopeWhereAdmin(Builder $query): Builder
     {
         return $query->whereDoesntHave('subusers', function (Builder $query) {
-            $query->where('main_user_id', '!=', DB::raw('users.id'));
+            $query->where('main_user_id', '!=', DB::raw($this->getTable() . '.id'));
         });
     }
 }
